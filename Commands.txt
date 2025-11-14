@@ -1,0 +1,480 @@
+zip -r filename.zip  foldername(jis folder ka backup lena ho uska name)/ (for create a zip)
+
+for ex:-
+
+zip -r public_html_bak.zip public_html
+
+zip -r scandipwa_21June_bak.zip scandipwa -X filename(je na joiye)
+
+zip -r scandipwa_today.zip scandipwa/ -x scandipwa/node_modules/**\*  (i do not want scandipwa/node_modules/**\*)
+
+zip -r thenobel_staging_5_feb_bk.zip html/ \
+    -x "html/livedb.sql*" \
+    -x "html/pub/media/*" \
+    -x "html/var/cache/*" \
+    -x "html/var/view_preprocessed/*"
+
+
+
+mv vendor vender__
+cp -r vendor vendor_org (for backup command)
+cp -r app app_org
+
+/// Database backup
+
+mysqldump -u username -p db_name > filename.sql
+
+
+mysqldump -u root -p domains_beautysalonequipment_upgrade > domains_beautysalonequipment_upgrade_27May2024.sql
+
+
+mysqldump -u db_username -h db_host -p db_name table_name > table_name.sql
+
+mysqldump -u onlinegenericmed_usr -h localhost -p onlinegenericmed_new 	url_rewrite > 	url_rewrite_10_dec_bk.sql
+
+
+
+for import sql
+mysql -u username -p database_name < file.sql
+
+
+to transfer files one server to second:- 
+
+scp contac24_wot_db_21_feb.sql ubuntu@38.242.130.88:/home/ubuntu/Websites/php82/contactlenssupply/contac24_wot_db_21_feb.sql
+
+scp client filename  username@hostname:path/filename
+
+
+*********************For Composer.json Backup*********************
+cp composer.json composer.json.28-05-24-bak
+
+cp composer.lock composer.lock.28-05-24-bak
+
+cp -r vendor vendor_
+
+
+find . -type f -exec chmod 644 {} \;
+find . -type d -exec chmod 755 {} \;
+chmod 644 ./app/etc/*.xml
+chmod +x bin/magento
+
+
+// To import data to db
+mysql -u root -p DBName < sql file
+
+
+mv foldername foldermovepath 
+
+mv 1mgstore ../php82
+
+
+
+scp media.zip vdc@192.168.1.134:/home/vdc/projects/php82/m247p4/pub/media.zip
+
+
+
+impoting database using source :
+
+mysql -u user -p databasename
+enter password
+
+source /pathod sql file/contactlens-supply_38s.sql;
+
+
+
+
+php -dmemory_limit=-1 bin/magento setup:upgrade 
+php -dmemory_limit=-1 bin/magento setup:di:compile
+php -dmemory_limit=-1 bin/magento setup:static-content:deploy -f
+php -dmemory_limit=-1 bin/magento indexer:reindex
+php -dmemory_limit=-1 bin/magento cache:flush
+
+
+php7.4 -d memory_limit=-1 bin/magento setup:upgrade 
+php7.4 -d memory_limit=-1 bin/magento setup:di:compile
+php7.4 -d memory_limit=-1 bin/magento setup:static-content:deploy -f
+php7.4 -d memory_limit=-1 bin/magento indexer:reindex
+php7.4 -d memory_limit=-1 bin/magento cache:flush
+
+
+
+sudo php7.4 -dmemory_limit=-1 bin/magento setup:upgrade 
+sudo php7.4 -dmemory_limit=-1 bin/magento setup:di:compile
+sudo php7.4 -dmemory_limit=-1 bin/magento setup:static-content:deploy -f
+sudo php7.4 -dmemory_limit=-1 bin/magento indexer:reindex
+sudo php7.4 -dmemory_limit=-1 bin/magento cache:flush
+
+
+sudo php bin/magento setup:upgrade 
+sudo php bin/magento setup:di:compile
+sudo php bin/magento setup:static-content:deploy -f
+sudo php bin/magento indexer:reindex
+sudo php bin/magento cache:flush
+sudo chmod -R 777 app/ generated/ var/ pub/ 
+
+
+php bin/magento config:set dev/css/minify_files 1
+php bin/magento config:set dev/css/merge_css_files 0
+php bin/magento config:set dev/js/minify_files 1
+php bin/magento config:set dev/js/merge_files 0
+php bin/magento config:set dev/js/enable_js_bundling 1
+php bin/magento config:set dev/js/minify_files 1
+php bin/magento config:set dev/debug/template_hints_storefront 1
+php bin/magento config:set dev/debug/template_hints_admin 1
+
+// for flat catlog 
+php bin/magento config:set catalog/frontend/flat_catalog_product 1
+
+
+Mode :-
+php -dmemory_limit=-1 bin/magento deploy:mode:show
+
+php -dmemory_limit=-1 bin/magento deploy:mode:set production
+
+php -dmemory_limit=-1 bin/magento deploy:mode:set developer
+
+
+Profiler :=
+
+php bin/magentgo dev:profiler enable <type>
+
+
+php -dmemory_limit=-1 bin/magento cron:run
+php -d memory_limit=-1 bin/magento queue:consumers:start exportProcessor
+
+php -dmemory_limit=-1 bin/magento deploy:mode:set production
+
+
+
+for resize of product images / or images are not loading
+
+php -dmemory_limit=-1 bin/magento catalog:images:resize
+
+------------------------------------------------------------
+
+
+php bin/magento deploy:mode: set production -s
+
+php -dmemory_limit=-1 bin/magento deploy:mode: set production -s
+
+for skip compilatio process 
+
+php -dmemory_limit=-1 bin/magento deploy:mode:set production --skip-compilation
+
+php -dmemory_limit=-1 bin/magento deploy:mode:set developer
+
+elasticsearch
+sudo service elasticsearch restart
+
+
+
+market place module inatallation :- composer require sparsh/magento-2-easy-product-tabs-extension:1.3.0
+
+Magento_New_Enterprice_246 // enterprise 
+
+https://magefan.com/magento-download  Magento 2 download
+
+composer create-project --repository-url=https://repo.magento.com/ magento/project-community-edition anuj 2.4.6 
+
+/*********************/
+creating patch
+
+diff -u CartResolver.php CartResolverM.php > scandipwa_catalogGraphQl_cartResolver.patch
+/*********************/
+/* Enter Prise */
+
+composer create-project --repository-url=https://repo.magento.com/ magento/project-enterprise-edition=2.4.6 Enterprice_New_246
+
+
+
+Check Repository Authentication Setup
+composer config --global --list | grep http-basic
+
+=========================================================================
+
+$writer = new \Zend_Log_Writer_Stream(BP . '/var/log/custom.log');
+$logger = new \Zend_Log();
+$logger->addWriter($writer);
+
+$logger->info('----------------- get daata --------------- ');
+$logger->info(print_r($new,true));
+
+
+vendor/bin/phpcs --standard=Magento2 app/code/Vdcstore/FormLogo
+
+vendor/bin/phpcbf --standard=Magento2 app/code/Vdcstore/FormLogo
+
+vendor/bin/phpcs --standard=Magento2 app/code/Vdcstore/FormLogo/ --severity=10
+
+
+/* Server */ 
+
+sudo php bin/magento setup:install --base-url=http://139.162.1.221/php81/Magento_New_Enterprice_246/pub/ --db-host=localhost --db-name=Magento_New_Enterprice_246 --db-user=root --db-password='Patyam$123#' --admin-firstname=admin --admin-lastname=admin --admin-email=admin@gmail.com --admin-user=admin --admin-password=admin123 --language=en_US --currency=USD --timezone=America/Chicago --use-rewrites=1 --search-engine=elasticsearch7 --elasticsearch-host=localhost --elasticsearch-port=9200
+
+/* Local */
+
+php bin/magento setup:install --base-url=http://127.0.0.1/php81/magento246/pub/ --db-host=localhost --db-name=magento246 --db-user=root --db-password=root --admin-firstname=admin --admin-lastname=admin --admin-email=admin@gmail.com --admin-user=admin --admin-password=admin123 --language=en_US --currency=USD --timezone=America/Chicago --use-rewrites=1 --search-engine=elasticsearch7 --elasticsearch-host=localhost --elasticsearch-port=9200
+
+sudo service apache2 restart
+
+/**elasticsearch*/
+service elasticsearch start  
+service elasticsearch status  
+
+
+sudo systemctl enable elasticsearch 
+/************************/
+
+php bin/magento deploy:mode:set developer
+
+php bin/magento s:up 
+php bin/magento s:d:c
+php bin/magento s:s:d -f
+php bin/magento i:rei
+php bin/magento c:f
+chmod -R 777 app/ generated/ var/ pub/
+
+php bin/magento info:language:list
+
+
+composer show scandipwa/scandipwa --all | grep versions
+
+php bin/magento maintenance:enable
+
+php bin/magento maintenance:disable
+
+php bin/magento catalog:images:resize
+
+grep -wr "searching word" path;
+grep -rl "searching word" path; (list)
+
+/* For Changing the php version */
+sudo update-alternatives --set php /usr/bin/php7.4
+
+
+php bin/magento sampledata:deploy
+
+Username: 7c018006799466c681ad507e27904677
+Password: 289077c86e811661a8f7751828485d3a
+
+php bin/magento module:enable Vdcstore_RecentOrdersNotification
+
+php bin/magento module:disable Vdcstore_DailyDeals
+
+php bin/magento module:disable Vdcstore_NotificationBar
+
+
+php -l app/etc/config.php
+
+php -l app/etc/env.php
+
+php bin/magento module:status
+
+bin/magento cache:clean
+
+
+
+bin/magento module:disable Magento_TwoFactorAuth
+
+
+=> Main Usefull Command :-
+sudo php -dmemory_limit=-1 bin/magento setup:upgrade 
+sudo php -dmemory_limit=-1 bin/magento setup:di:compile
+sudo php -dmemory_limit=-1 bin/magento setup:static-content:deploy -f
+sudo php -dmemory_limit=-1 bin/magento indexer:reindex
+sudo php -dmemory_limit=-1 bin/magento cache:flush
+sudo chmod -R 777 app/ generated/ var/ pub/ 
+
+bin/magento setup:upgrade 
+bin/magento setup:di:compile
+bin/magento setup:static-content:deploy -f
+bin/magento indexer:reindex
+bin/magento cache:flush
+chmod -R 777 app/ generated/ var/ pub/ 
+
+
+bin/magento maintenance:disable
+
+
+Displays help for a command 		                    	:	help
+Lists commands							:	php bin/magento list
+
+
+
+Admin :-
+
+Creates an administrator			         	:	php bin/magento admin:user:create
+Unlock Admin Account			        		:	php bin/magento admin:user:unlock
+
+
+App :-
+
+Create dump of application			        	:	php bin/magento app:config:dump
+Import data from shared configuration 
+files to appropriate data storage	                	:	php bin/magento app:config:import
+
+
+Cache :-
+
+Cleans cache type(s)						:	php bin/magento cache:clean
+Disables cache type(s)						:	php bin/magento cache:disable
+Enables cache type(s)						:	php bin/magento cache:enable
+Flushes cache storage used by cache type(s)	                :	php bin/magento cache:flush
+Checks cache status						:	php bin/magento cache:status
+
+
+catalog :-
+
+Creates resized product images			                :	php bin/magento catalog:images:resize
+Removes unused product attributes		                :	php bin/magento catalog:product:attributes:cleanup
+
+
+config :-
+
+Set sensitive configuration values				:	php bin/magento config:sensitive:set
+Change system configuration					:	php bin/magento config:set
+
+Shows configuration value for given path.
+If path is not specified, all saved values 
+will be shown							:	php bin/magento config:show
+
+
+cron :-
+
+Generates and installs crontab for current user		        :	php bin/magento cron:install
+Removes tasks from crontab					:	php bin/magento cron:remove
+Runs jobs by schedule						:	php bin/magento cron:run
+
+
+customer :-
+
+Upgrade customer’s hash according to the latest algorithm	:	php bin/magento customer:\hash:upgrade
+
+
+deploy	:-
+
+Set application mode.				                :	php bin/magento deploy:mode:set
+Displays current application mode.	                        :	php bin/magento deploy:mode:show
+
+
+dev :-
+
+Provides information on Dependency Injection 
+configuration for the Command.					:	php bin/magento dev:di:info
+Disable DB query logging					:	php bin/magento dev:query-log:disable
+Enable DB query logging						:	php bin/magento dev:query-log:enable
+Collects and publishes source files for theme.	                :	php bin/magento dev:source-theme:deploy
+Disable frontend template hints. A cache flush
+might be required.						:	php bin/magento dev:template-hints:disable
+Enable frontend template hints. A cache flush 
+might be required.						:	php bin/magento dev:template-hints:enable
+Runs tests							:	php bin/magento dev:tests:run
+Generates the catalog of URNs to *.xsd 
+mappings for the IDE to highlight xml.			        :	php bin/magento dev:urn-catalog:generate
+Converts XML file using XSL style sheets		        :	php bin/magento dev:xml:convert
+
+
+i18n :-
+
+Discovers phrases in the codebase			        :	php bin/magento i18n:collect-phrases
+Saves language package						:	php bin/magento i18n:pack
+Uninstalls language packages				        :	php bin/magento i18n:uninstall
+
+
+indexer	:-
+
+Shows allowed Indexers						:	php bin/magento indexer:info
+Reindexes Data							:	php bin/magento indexer:reindex
+Resets indexer status to invalid		              	:	php bin/magento indexer:reset
+Sets index mode type						:	php bin/magento indexer:set-mode
+Shows Index Mode 					        :	php bin/magento indexer:show-mode
+Shows status of Indexer 					:	php bin/magento indexer:status
+
+
+info :-
+
+Displays the Magento Admin URI					:	php bin/magento info:adminuri
+Prints list of available backup files				:	php bin/magento info:backups:list
+Displays the list of available currencies			:	php bin/magento info:currency:list
+Shows number of dependencies on Magento framework		:	php bin/magento info:dependencies:show-framework
+Shows number of dependencies between modules			:	php bin/magento info:dependencies:show-modules
+Shows number of circular dependencies between modules   	:       php bin/magento info:dependencies:show-modules-circular
+Displays the list of available language locales			:	php bin/magento info:language:list
+Displays the list of available timezones			:	php bin/magento info:timezone:list
+
+
+maintenance	:-
+
+Sets maintenance mode exempt IPs			        :	php bin/magento maintenance:allow-ips
+Disables maintenance mode 					:	php bin/magento maintenance:disable
+Enables maintenance mode 					:	php bin/magento maintenance:enable
+Displays maintenance mode status			        :	php bin/magento maintenance:status
+
+
+module :-
+
+Disables specified modules 					:	php bin/magento module:disable
+Enables specified modules 					:	php bin/magento module:enable
+Displays status of modules 					:	php bin/magento module:status
+Uninstalls modules installed by composer	                :	php bin/magento module:uninstall
+
+
+sampledata :-
+
+Deploy sample data modules 					        :	php bin/magento sampledata:deploy
+Remove all sample data packages from composer.json	                :	php bin/magento sampledata:remove
+Reset all sample data modules for re-installation	                :	php bin/magento sampledata:reset
+
+
+setup :-
+
+Takes backup of Magento Application 
+code base, media and database						:	php bin/magento setup:backup
+Creates or modifies the deployment configuration			:	php bin/magento setup:config:set
+Runs cron job scheduled for setup application				:	php bin/magento setup:cron:run
+Installs and upgrades data in the DB 					:	php bin/magento setup:db-data:upgrade
+Installs and upgrades the DB schema					:	php bin/magento setup:db-schema:upgrade
+Checks if DB schema or data requires upgrade 				:	php bin/magento setup:db:status
+Generates DI configuration and all missing 
+classes that can be auto-generated					:	php bin/magento setup:di:compile
+Installs the Magento application					:	php bin/magento setup:install
+Generates fixtures							:	php bin/magento setup:performance:generate-fixtures
+Rolls back Magento Application codebase, media and database	        :	php bin/magento setup:rollback
+Deploys static view files						:	php bin/magento setup:static-content:deploy
+Installs the store configuration. 
+Deprecated since 2.2.0. Use config:set instead 				:	php bin/magento setup:store-config:set
+Uninstalls the Magento application					:	php bin/magento setup:uninstall
+Upgrades the Magento application, DB data, and schema 		        :	php bin/magento setup:upgrade
+
+
+
+store :-
+
+Displays the list of stores						:	php bin/magento store:list
+Displays the list of websites					        :	store:website:list
+
+
+theme :-
+
+Uninstalls theme 							:	php bin/magento theme:uninstall
+
+
+
+varnish	:-
+
+php bin/magento varnish:vcl:ge
+
+
+
+
+
+
+
+bin/magento app:config:import
+
+
+
+to transfer files :- 
+
+scp contac24_wot_db_21_feb.sql ubuntu@38.242.130.88:/home/ubuntu/Websites/php82/contactlenssupply/contac24_wot_db_21_feb.sql
+

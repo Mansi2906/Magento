@@ -1,0 +1,1139 @@
+==================SERVER DETAILS===================
+
+SSH Host : 38.242.130.88
+SSH User : ubuntu
+SSH Pass : Ue#$78!1pAQ7b#45
+SSH Port : 22
+
+Path : /home/ubuntu/Websites/php82/developer/magentocommunity
+adminusername :- admin
+admin pass :- admin123
+
+Command : ssh ubuntu@38.242.130.88
+pass : Ue#$78!1pAQ7b#45
+
+url :- http://38.242.130.88/php82/developer/magentoenterprise/pub/admin
+url :- http://38.242.130.88/php82/developer/magentocommunity/pub/admin
+
+url :- http://38.242.130.88/pakasqa-yaykuna/index.php?r
+Database UserName     : root
+Database Password     : S-XRWpshU-KqWfeO
+
+
+In filezilla create zip:
+zip -r MageArray_Old.zip MageArray_Old
+
+Unzip folder in filezilla:
+unzip tailwind.zip
+==========================================================
+
+hyva theme installation:
+composer config --auth http-basic.hyva-themes.repo.packagist.com token 905bee986fc2da4257e3d969e1edcc7d
+
+composer config repositories.private-packagist composer https://hyva-themes.repo.packagist.com/m247_theme/
+
+grep -r "VAT" app/code
+
+
+================== Upload / update extension on github:==================
+cd /home/vdc/projects/VIha/vdc_modules
+git status
+got to that extension which you want to update like :
+git checkout Rma
+git status
+update your latest zip in filezilla
+git add . (add all files when add new extension)
+git add file path(add when any extension update) 
+git commit -m "test"
+git push
+==> Go to https://github.com/vihadigital-github/vdcstore.com/
+==> Create New Pull Request
+==> Select compare (Rma) to base (master)
+==> Merge PR 
+
+
+============Local to staging Code Push============
+git status
+git branch
+git checkout priya
+git status
+==>Add modified file 
+git add <file path>
+git status
+git commit -m "Test"
+git push origin priya
+==> Go to https://github.com/vihadigital-github/vdcstore.com/
+==> Create New Pull Request
+==> Select compare (priya) to base (staging)
+==> Merge PR 
+
+=============Staging To Master code push=======
+
+==> New PR 
+==> Select compare (staging) to base (master)
+==> Create PR 
+==> Send to Darshit Sir >> https://github.com/vihadigital-github/vdcstore.com/pull/193
+
+
+GITHUB: 
+put data in github : 
+git status :
+if not in staging then go in staging
+git checkout staging
+git add app/code/Vdcstore/Form/Helper/Email.php
+git commit -m "send email to custom email 1 in hyva/custom form"
+git push
+
+get data from github : 
+git status
+git checkout staging
+git pull origin staging
+
+
+Composer install:
+//curl -s https://getcomposer.org/installer | php
+//sudo mv composer.phar /usr/local/bin/composer
+curl -sS https://getcomposer.org/installer -o composer-setup.php
+sudo php composer-setup.php --install-dir=/usr/bin --filename=composer
+composer --version
+
+download particular composer version:
+wget https://getcomposer.org/download/2.2.23/composer.phar
+
+
+create magento account:
+https://account.magento.com/
+keys for username and password:
+Public Key: 905bee986fc2da4257e3d969e1edcc7d 
+Private Key: 03bdbb5ff57ef66dd471eaada2d025fe 
+
+==> This Command use to Database createtion.
+mysql -u root -p
+password : Patyam$123#
+
+create database ma246;(Your Database Name)
+create database Magento247;
+
+
+magento2.4.6 install community:
+-----------------------------------------------------------------
+composer create-project --repository-url=https://repo.magento.com/ magento/project-community-edition=2.4.7 m247 
+else
+composer create-project --repository-url=https://repo.magento.com/ magento/project-community-edition magento8 2.4.8
+
+go in folder : m247
+php bin/magento setup:install --base-url=http://192.168.2.53/php82/m247/pub/ --db-host=localhost --db-name=m247 --db-user=root --db-password=root --admin-firstname=admin --admin-lastname=develpoer --admin-email=admin@vdcstore.com --admin-user=admin --admin-password=admin@123 --language=en_US --currency=USD --timezone=America/Chicago --use-rewrites=1
+
+php bin/magento mo:dis Magento_TwoFactorAuth Magento_AdminAdobeImsTwoFactorAuth
+
+php bin/magento sampledata:deploy
+
+php bin/magento deploy:mode:set developer
+
+php bin/magento config:set dev/static/sign 0
+     
+change admin url in app/etc/env.php file : 
+'backend' => [
+        'frontName' => 'admin'
+    ],   
+      
+
+    
+magento 2.4.7 install enterprise:
+-----------------------------------------------------------------
+composer global config http-basic.repo.magento.com <public_key> <private_key>
+enter below keys in above command:
+auth.json file:
+    "repo.magento.com": {
+        "username": "d8792da4c4938b8d3567dc2e19387876",
+        "password": "8cbcc10455ac847057fc24ac62fce154"
+    },
+    
+composer create-project --repository-url=https://repo.magento.com/ magento/project-enterprise-edition=2.4.7-p2 m247_p2_en
+
+composer create-project --repository-url=https://repo.magento.com/ magento/project-community-edition:2.4.8-p3 m247_p3
+
+mysql -u root -p
+password : root
+
+create database m248_p3; 
+
+When we got error in module install
+cd m247_p2_en/
+rm -rf vendor/
+composer install
+
+php bin/magento setup:install --base-url=http://127.0.0.1/php83/m248_p3/pub/ --db-host=localhost --db-name=m248_p3 --db-user=root --db-password=root --admin-firstname=Magento --admin-lastname=mansi --admin-email=mansi@vdcstore.com --admin-user=mansi248p3 --admin-password=mansi248p3 --language=en_US --currency=USD --timezone=America/Chicago --use-rewrites=1
+
+php bin/magento mo:dis Magento_TwoFactorAuth Magento_AdminAdobeImsTwoFactorAuth
+
+php bin/magento sampledata:deploy
+
+php bin/magento deploy:mode:set developer
+
+php bin/magento config:set dev/static/sign 0
+
+php bin/magento s:up 
+php bin/magento s:d:c 
+php bin/magento s:s:d -f 
+php bin/magento i:rei
+php bin/magento c:f
+
+php bin/magento cron:remove
+php bin/magento cron:install
+php bin/magento cron:run
+
+for set cron by command:
+0 */1 * * * /opt/remi/php82/root/usr/bin/php /chroot/home/aa272d95/223ed8fe56.nxcli.io/html/bin/magento indexer:reindex >> /chroot/home/aa272d95/223ed8fe56.nxcli.io/html/var/log/magento.index.log
+
+php bin/magento deploy:mode:set production 
+php bin/magento deploy:mode:set developer
+
+index reset:
+php bin/magento indexer:reset
+
+-------------magento upgrade------------------------------------------------------------------------------
+
+NOTE : If any issue on composer upgrade to use composer.phar file which download from official site and add root directory
+	   OR
+       Copy link address for right click on version number on composer website and run bellow command in terminal
+       
+wget <past link adress>
+
+php composer.phar update
+
+php bin/magento maintenance:enable     >>> required only in live site
+
+cp composer.json composer.json.bak
+composer require magento/composer-root-update-plugin=~2.0 --no-update
+composer update
+composer require magento/product-community-edition=2.4.7-p4 --no-update
+------------------for enterprise update ----------------------------------
+php composer.phar require magento/product-enterprise-edition=2.4.7-p4 --no-update
+---------------------------------------------------------------------------
+when need to update composer >> install composer as per requirement 
+php composer.phar update
+php composer.phar require magento/product-community-edition=2.4.7-p4 --no-update
+
+------------------for enterprise update ----------------------------------
+php composer.phar require magento/product-enterprise-edition=2.4.7-p4 --no-update
+----------------------------------------------------------------------
+composer update
+
+>>> clear cache and regenerate code by bellow command
+php bin/magento cache:clean
+rm -rf var/cache/*
+rm -rf var/page_cache/*
+rm -rf generated/code/*
+php bin/magento setup:upgrade
+php bin/magento setup:di:compile
+php bin/magento setup:static-content:deploy -f
+
+php bin/magento maintenance:disable     >>> on maintenence mode
+
+------------------------------------------------------------------------------------------------------
+
+
+-------------magento upgrade---------------------------------------------------------------------------
+
+php bin/magento maintenance:enable     >>> required only in live site
+
+cp composer.json composer.json.bak
+composer require magento/composer-root-update-plugin=~1.0 --no-update
+composer update
+composer require magento/product-community-edition=2.4.7-p3 --no-update
+composer update
+
+
+php bin/magento cache:clean           >>> clear cache and regenerate code
+rm -rf var/cache/*
+rm -rf var/page_cache/*
+rm -rf generated/code/*
+php bin/magento setup:upgrade
+php bin/magento setup:di:compile
+php bin/magento setup:static-content:deploy -f
+
+php bin/magento maintenance:disable     >>> on maintenence mode
+
+-----------------------------------------------------------------------------------------------------------------------------------
+ 
+check for errors and warning: 
+vendor/bin/phpcs --standard=Magento2 app/code/Vdcstore/AbandonedCart/Helper/Email.php => warning
+
+/home/vdc/projects/php82/m247_new/app/code/Vdcstore/AbandonedCart/Block/Email/Template.php
+
+/home/vdc/projects/php82/m247_new/app/code/Vdcstore/AbandonedCart/Plugin/SaveCustomerEmail.php
+
+vendor/bin/phpcbf --standard=Magento2 app/code/Vdcstore/AbandonedCart/Block/Email/Template.php => Error [x]
+vendor/bin/phpcs --standard=Magento2 app/code/Vdcstore/OpenGraph --severity=10
+
+change password and create user:
+php bin/magento admin:user:create --admin-user=admin --admin-password=admin123 --admin-email=mansi@vdcstore.com --admin-firstname=Magento --admin-lastname=mansi
+
+log:
+    $writer = new \Zend_Log_Writer_Stream(BP . '/var/log/custom.log');
+    $logger = new \Zend_Log();
+    $logger->addWriter($writer);
+
+    $logger->info('----------------- get daata --------------- ');
+    $logger->info(print_r($new,true));  
+          
+sudo php bin/magento setup:install --base-url=http://192.168.10.25/php81/magento2/pub --db-host=localhost --db-name=magento245 --db-user=root --db-password=root --admin-firstname=Admin --admin-lastname=admin --admin-email=admin@gmail.com --admin-user=admin --admin-password=admin123 --language=en_US --currency=USD --timezone=America/Chicago --use-rewrites=1 --search-engine=elasticsearch7 --elasticsearch-host=localhost --elasticsearch-port=9200
+
+
+
+Commands:
+Setup upgrade:
+php bin/magento s:up    bin/magento setup:upgrade 
+The bin/magento setup:upgrade command is used for system upgrade or upgrade process in Magento.
+When we create any other custom module or extension then this cmd is used to show our created module or extensions.
+
+Cache Flush:
+php bin/magento c:f     bin/magento cache:flush
+A Magento 2 cache flush removes all stored data from the cache,A Magento 2 cache clean deletes all enabled caches. It doesn't affect other server processes that aren't part of Magento.
+
+
+Di Compile:
+php bin/magento s:d:c    bin/magento setup:di:compile
+It will optimize the dependency injection configurations according to the area.(controller,plugin any changes)
+
+
+Static Content Deploy:php bin/magento s:s:d
+bin/magento setup:static-content:deploy -f 
+Static content deployment in Magento 2 refers to the process of generating and integrating static files like CSS, JavaScript, and images into the Magento file system. This is particularly done when the system is set to production mode.
+
+
+Reindexes Data:
+php bin/magento i:rei   bin/magento indexer:reindex
+What is Magento 2 Reindex? Magento 2 Reindex is the process of updating the transformed data as the data changes. E.g.: when updating a product price the data should be reindexed to be correctly displayed on the frontend.
+
+
+Disables specified modules:
+php bin/magento mo:d CompanyName_ModuleName    php bin/magento module:disable
+
+Enables specified modules:
+php bin/magento mo:e CompanyName_ModuleName     php bin/magento module:enable
+
+Displays status of modules:
+php bin/magento mo:s    php bin/magento module:status
+Uninstalls modules installed by composer (which only installed by composer):
+php bin/magento mo:u CompanyName_ModuleName
+
+
+Disable Cache:php bin/magento c:d
+Enable Cache:php bin/magento c:e
+Var clean folder:php bin/magento v:c
+Uninstall Magento application:php bin/magento s:un
+Runs cron job scheduled for setup application:php bin/magento s:c:r
+Cleans cache type(s):php bin/magento c:c
+Disables cache type(s):php bin/magento c:d
+Enables cache type(s):php bin/magento c:e
+Flushes cache storage used by cache type(s):php bin/magento c:f
+Checks cache status:php bin/magento c:s
+Enable Maintenance Mode Using Command Line:php bin/magento ma:e
+Disable Maintenance Mode Using Command Line:php bin/magento ma:d
+Shows allowed Indexers:php bin/magento i:i
+Resets indexer status to invalid:php bin/magento i:res
+Sets index mode type:php bin/magento i:res
+Shows status of Indexer:php bin/magento i:st
+php bin/magento deploy:mode:show : for show status of deploy mode
+
+
+Tasks:
+Create Products (all types like a simple, configurable etc....)
+Place an order using by fronted and backend.
+Create customer using by fronted and backend.
+Create customer group.
+
+Install Mageplaza SMTP extension and confiure it.----
+Place orders and create invoices, shipments, and refunds.
+
+1.Assign new Home page:
+Create new page in content-all pages-add new page
+Stores-Configurations-General-Web-Default page
+
+2.Change default root category
+Stores-all stores-store-root category
+
+3.Create website, store and store view (us_en and br_en)
+stores-all stores-website,store and store view
+
+4.Setup currency
+us_en - USD
+br_en - brazil real
+Stores-Configurations-General-currency setup(As store view)
+
+5.Assign language
+Stores-Configurations-General-General-locale options
+
+6.Create one product and change product name based on store view
+catalog-products-add new product-product in websites(change store view from left top corner and change name pf product)
+
+7.Change currency price
+Stores-currency rates
+
+8.Create email template and asssign it to order confirmation mail----
+Stores-Configurations-sales-sales emails-set order and order comments and save.
+
+9.Add store information--
+Stores-Configurations-General-store information add and save.
+See this values in email.
+
+10.Disable guest checkout
+Stores-Configurations-sales-checkout-Allow Guest Checkout as no
+
+11.Integrate Payment method
+Stores-Configurations-sales-Payment methods-RECOMMENDED SOLUTIONS-PayPal Express Checkout configure and save
+
+12.Integrate Shipping method
+Stores-Configurations-sales-delivery methods.
+
+
+
+1.Create Hello world extension.
+Create folder in:
+app/code/vendorname/extensionname
+Vendorname-companyname
+extensionname-HelloWorld
+Create module.xml file in:
+	app/code/VDC/HelloWorld/etc/module.xml
+	This file contains module name,version and dependencies.
+Create registration.php file in:
+	app/code/VDC/HelloWorld/registration.php
+	This file indicates magento in locating the module within its file system itself.
+php bin/magento s:up    
+php bin/magento mo:s      
+php bin/magento mo:e VDC_HelloWorld      
+php bin/magento s:s:d -f
+Create route for the module:
+    app/code/VDC/HelloWorld/etc/frontend/routes.xml
+	This file for the frontend area.
+Create Controller and action to display output.
+    app/code/VDC/HelloWorld/Controller/Index/Test.php
+php bin/magento c:f
+URL: https://localhost/helloworld/index/test
+
+
+2.Create system configuration (Text, Dropdown, Multiselect, Textarea,)
+Create system.xml in:
+	app/code/VDC/HelloWorld/etc/adminhtml/system.xml
+    In this file all code here for all fields display in configuration.
+
+
+3.Get system configuration value in custom page
+For set the default value create config.xml file in:
+	app/code/VDC/HelloWorld/etc/config.xml
+
+For creating source_model in any fields:
+    app/code/VDC/HelloWorld/Model/Config/Source/filename.php
+	In this file we can define our values.
+To display our configuration values in page:
+Create Helper file in:	
+    app/code/VDC/HelloWorld/Helper/Data.php
+Create controller file:
+	app/code/VDC/HelloWorld/Controller/Index/config.php
+	Php bin/magento c:f
+
+
+//Fetch all products and add in configuration and display selected products SKU:
+//Display system configuration values in home page using view folder(.phml) file:
+Create folder in:
+          app/code/VDC/HelloWorld/view/frontend
+Create other two folder in that:
+          app/code/VDC/HelloWorld/view/frontend/layout
+          app/code/VDC/HelloWorld/view/frontend/templates
+In layout folder create default.xml file for any pages display data
+In templates folder create file home.phml for display data:
+	$this->helper('VDC\HelloWorld\Helper\Data')->getGeneralConfig('enable')s
+
+
+4.Create admin menu and display text in custom sub-menu:
+app/code/VDC/HelloWorld/etc/adminhtml/menu.xml
+Create a new sub-menu in the main menu
+php bin/magento s:up
+php bin/magento s:s:d -f
+php bin/magento c:f
+Create routes.xml:
+	app/code/VDC/HelloWorld/etc/adminhtml/routes.xml
+Create a page to attach a link in the menu. Create file Index.php:
+	app/code/VDC/HelloWorld/Controller/Adminhtml/Create/Index.php
+Determine the interface of the page:	
+	Define layout and page structure. Create file helloworld_create_index:
+	app/code/VDC/HelloWorld/view/adminhtml/layout/helloworld_create_index.xml
+Set up page content. Create file helloworld.phtml:
+	app/code/VDC/HelloWorld/view/adminhtml/templates/helloworld.phtml
+php bin/magento s:up
+php bin/magento s:s:d -f
+php bin/magento c:f
+
+5.Create acl.xml:
+Magento 2 Admin ACL panel use an authentication system and a robust system for create Access Control List Rules (ACL) which allows a store owner to create fine grained roles for each and every user in their system.
+Create new user
+Create file:
+app/code/VDC/HelloWorld/etc/acl.xml
+This extension we can see in role resources in user roles.
+Assign and tick that extension and save role.
+Php bin/magento c:f
+In the controller, you have to write a protected function to check the resource:
+app/code/VDC/HelloWorld/Controller/Adminhtml/Index.php
+Php bin/magento c:f
+
+6.Set every minute cron and add logger:
+Create a class to run cron and Created a file named Test.php in that directory :
+	app/code/VDC/HelloWorld/Cron/Test.php
+Create crontab.xml:
+	app/code/VDC/HelloWorld/etc
+Php bin/magento s:d:c
+Php bin/magento c:f
+Verify the cron job:
+	Php bin/magento cron:run
+Verify that messages are written to Commerce’s system log:
+	var/log/system.log
+You should set up a custom cron group if you want your custom cron job to run on a different schedule than other cron jobs (typically, once per minute) or if you want several custom cron jobs to run with different settings.
+	Create app/code/VDC/HelloWorld/etc/cron_groups.xml
+Verify your custom cron group:	
+	bin/magento cron:run --group="custom_crongroup”
+	Php bin/magento c:f
+Stores > Settings > Configuration > Advanced > System.
+	We can set the time here.
+
+7.Create Customer attribute programmatically:
+Using Data Patch:
+	Create file:
+	app/code/VDC/HelloWorld/Setup/Patch/Data/CreateAttributes.php
+php bin/magento s:up
+php bin/magento s:s:d -f
+php bin/magento c:f
+
+8.Create Product attribute programmatically:
+Using Data Patch:
+	Create file:
+	app/code/VDC/HelloWorld/Setup/Patch/Data/CreateProductAttribute.php
+php bin/magento s:up
+php bin/magento s:s:d -f
+php bin/magento c:f
+
+9.Create Category attribute programmatically:
+Using Data Patch:
+	Create file:
+	app/code/VDC/HelloWorld/Setup/Patch/Data/CreateCategoryAttribute.php
+To add attribute in category form, you need to create category_form.xml:
+	app/code/VDC/Helloworld/view/adminhtml/ui_component/
+php bin/magento s:up
+php bin/magento s:s:d -f
+php bin/magento c:f
+
+
+
+
+10.Send email programmatically:
+Create app/code/VDC/HelloWorld/etc/email_templates.xml:
+	In which:
+	Template id: Your template id you have created in Step 1.
+	Label: Your Label will show in the dropdown email.
+	file: Your email template file.
+	type: Type of your email. module: Your module.
+	area: Place your email in the module directory. view / frontend or view / adminhtml
+Create app/code/VDC/HelloWorld/Helper/Email.php:
+	In which:
+	$sender: The sender’s information (‘name’: sender’s name and ‘email’: sender’s email)
+	setTemplateIdentifier(’email_demo_template’): email_demo_template is ID of template email mentioned in Step 1 and 2.
+	setTemplateVars: The information or variable in your email.
+	addTo(‘testmagento321@gmail.com’): You can fill in the recipient’s email here.
+Create Email by HTML:
+	Create app/code/VDC/HelloWorld/view/frontend/email/email_demo_template.html.
+Catch Event:
+	To test the email function, we test through the capture of the customer_register_success event when the customer registers the account 						successfully.
+	Create app/code/Bss/EmailDemo/etc/frontend/events.xml
+Create Observer to Send Email:
+	Create app/code/VDC/HelloWorld/Observer/CustomerRegisterObserver.php.
+In template we can’t use loop and variable which is in email.php file for output email:SOLUTION:
+1. Add a layout file in your module: app/code/VDC/HelloWorld/view/frontend/layout/email_product_list.xml
+2. Create a phtml file in: app/code/VDC/HelloWorld/view/frontend/template/email/product.phtml
+<?
+php $items = $this->getData(‘item’);
+?>
+‘Item’ is the name of our variable in our template file :
+ {{layout handle="email_product_list" area="frontend" item=$products}}
+3. Lastly, add this code in your email template:(email_checkout_template.html file)
+ {{layout handle="email_product_list" area="frontend" item=$products}}
+
+
+11.Show Gender/Date Of Birth in Customer Accounts:
+stores->configuration->Customer->customer configuration->Name and Address Options->Show Date of Birth:required,Show Gender:required
+
+12.CAPTCHA add in customer account enter number only validate:
+stores->configuration->Customer->customer configuration->captcha->forms(set as we want),Symbols Used in CAPTCHA(set 23456789)
+
+
+13.footer content Copyright..... change this text:
+content->configuration->edit our active theme->footer->Copyright
+
+14.only 5 Product Items to Display in minicart:
+stores->configuration->Sales->Checkout->Mini cart->Number of Items to Display Scrollbar(set 5)
+
+15.On checkout page add the terms and condition checkbox:
+Stores->Terms & Conditions->Add new condition
+stores->configuration->Sales->Checkout->Checkout Options->Enable Terms and Conditions(yes)
+
+16.only one color show in configurable product home/category page:
+stores->configuration->Catalog->Catalog->Storefront->
+Swatches per Product(1)
+
+
+17.system.xml : 
+    1). enable/disable
+    2). text field (only number) and text field (only alpha)
+    3). multiselect (customer grps)
+    4). select ()
+    5). colorpicker
+    6). image uploader
+    7). choose file
+    (with dependency)
+    = > helper -> system.xml values
+    = > Block -> get helper value 
+    = > layout -> call block and phtml template
+    = > .phtml : - system.xml value print
+
+
+min_text_length 
+max_text_length 
+max-words 
+min-words 
+range-words 
+letters-with-basic-punc 
+alphanumeric 
+letters-only 
+no-whitespace 
+zip-range 
+integer 
+vinUS 
+dateITA 
+dateNL 
+time 
+time12h 
+phoneUS 
+phoneUK 
+mobileUK 
+stripped-min-length 
+email2 
+url2 
+credit-card-types 
+ipv4 
+ipv6 
+pattern 
+validate-no-html-tags 
+validate-select 
+validate-no-empty 
+validate-alphanum-with-spaces 
+validate-data 
+validate-street 
+validate-phoneStrict 
+validate-phoneLax 
+validate-fax 
+validate-email 
+validate-emailSender 
+validate-password 
+validate-admin-password 
+Validate-url
+validate-clean-url 
+validate-xml-identifier 
+validate-ssn 
+validate-zip-us 
+validate-date-au 
+validate-currency-dollar 
+validate-not-negative-number 
+validate-zero-or-greater 
+validate-greater-than-zero 
+validate-css-length 
+validate-number 
+validate-number-range 
+validate-digits 
+validate-digits-range 
+validate-range 
+validate-alpha 
+validate-code 
+validate-alphanum 
+validate-date 
+validate-identifier 
+validate-zip-international 
+validate-state 
+less-than-equals-to 
+greater-than-equals-to 
+validate-emails 
+validate-cc-number 
+validate-cc-ukss 
+required-entry 
+checked 
+not-negative-amount 
+validate-per-page-value-list 
+validate-new-password 
+validate-item-quantity 
+equalTo
+'validate-no-html-tags'         => 'HTML tags are not allowed'
+'validate-select'               => 'Please select an option.'
+'required-entry'                => 'This is a required field.'
+'validate-number'               => 'Please enter a valid number in this field.'
+'validate-digits'               => 'Please use numbers only in this field. Please avoid spaces or other characters such as dots or commas.'
+'validate-date'                 => 'Please enter a valid date.'
+'validate-email'                => 'Please enter a valid email address. For example johndoe@domain.com.'
+'validate-url'                  => 'Please enter a valid URL. Protocol is required (http://, https:// or ftp://)'
+'validate-not-negative-number'  => 'Please enter a number 0 or greater in this field.'
+'validate-zero-or-greater'      => 'Please enter a number 0 or greater in this field.'
+'validate-state'                => 'Please select State/Province.'
+'validate-cc-number'            => 'Please enter a valid credit card number.'
+'validate-data'                 => 'Please use only letters (a-z or A-Z), numbers (0-9) or underscore(_) in this field, first character should be a letter.'
+
+= > helper -> system.xml values
+ = > Block -> get helper value 
+ = > layout -> call block and phtml template
+ = > .phtml : - system.xml value print
+ 
+Create system.xml file for our fields:
+Create config.xml file for our default value:
+Create Helper/Data.php file for helper and get data and value from system configuration:
+public function getDataConfig($code, $storeId = null)
+{
+return $this->getConfigValue(self::XML_PATH_CUSTOMTAB .'data/'. $code, $storeId);
+}
+
+Create Block/index.php file for calling our helper function for particular field:	
+public function getEnable()
+{
+        return $this->_helperData->getDataConfig('enable');
+}
+
+Create view\frontend\layout\default.xml file for call our block class and .phtml file:
+<block class="VDC\HelloWorld\Block\Index" name="data" template="VDC_HelloWorld::data.phtml"/>
+
+Create view\frontend\templates\data.phtml file for display our system configuration value:	
+$block->getEnable();
+
+ = >for display our configuration value in custom page:
+Create a Controller\Index\Data file for creating a new page.
+Create file:
+View\frontend\layout\helloworld_index_data.xml for calling our block
+helloworld(routename)_index(foldername in controller folder)_data(filename).xml
+
+VDC_Grid Extension: (Only grid)
+18.Create Grid in admin:
+Create new extension:(VDC/Grid)
+etc/module.xml file
+Registration.php file
+etc/adminhtml/routes.xml
+Create menu in admin:
+etc/adminhtml/menu.xml
+Create table:
+app/code/VDC/Grid/etc/db_schema.xml file
+Hence, the db_schema_whitelist.json holds a list of all the DB tables, columns, indexes, constraints, etc that where created via declarative schema and can therefore be safely altered in case it detects any change for those elements in an upgraded db_schema.xml file.
+php bin/magento setup:db-declaration:generate-whitelist --module-name=Vendorname_Modulename
+Check your etc folder of your module, db_schema_whitelist.json file must have generated.
+Now, run the below command to update this table in the database:
+php bin/magento setup:upgrade && php bin/magento setup:static-content:deploy -f
+Our database created.
+Create the Model file:
+app/code/VDC/Grid/Model/Grid.php
+For save our data in table we can get id from here.
+Create the ResourceModel folder:
+app/code/VDC/Grid/Model/ResourceModel/Grid.php:
+For save our data in table we can get id from here.
+Create Folder with any name :
+app/code/VDC/Grid/Model/ResourceModel/Grid
+Create collection file in that folder:
+app/code/VDC/Grid/Model/ResourceModel/Grid/Collection.php
+Create ui component for grid row list:
+app/code/VDC/Grid/view/adminhtml/ui_component/custom_grid_listing.xml
+Create di.xml file for map data provider with collection:
+app/code/VDC/Grid/etc/di.xml
+For action we will create Action Class Action.php:
+app/code/VDC/Grid/Ui/Component/Listing/Grid/Column/Action.php
+Our UI component and data provider become ready, Create controller file index.php for display our submenu page in:
+->app/code/VDC/Grid/Controller/Adminhtml/Index/Index.php
+And for grid display create layout file:
+app/code/VDC/Grid/view/adminhtml/layout/grid_index_index.xml (routename_controllerfoldername_filename)
+After that our list page display:
+
+Now for Add New button we will create new page for adding data:
+app/code/VDC/Grid/Controller/Adminhtml/Index/NewAction.php
+For add our add fields create:
+app/code/VDC/Grid/view/adminhtml/ui_component/custom_grid_add_form.xml
+For display add field create:
+app/code/VDC/Grid/view/adminhtml/layout/grid_index_newaction.xml(routename_controllerfoldername_filename)
+In this for save and back button create new files in:
+app/code/VDC/Grid/Block/Adminhtml/Grid/Edit/BackButton.php
+app/code/VDC/Grid/Block/Adminhtml/Grid/Edit/SaveButton.php
+app/code/VDC/Grid/Block/Adminhtml/Grid/Edit/GenericButton.php
+Create DataProvider file in model folder:
+app/code/VDC/Grid/Model/DataProvider.php
+Give path in listing.xml and di.xml
+For save our data create save.php in:
+app/code/VDC/Grid/Controller/Adminhtml/Index/Save.php
+For edit our data create edit.php in:
+app/code/VDC/Grid/Controller/Adminhtml/Index/Save.php
+For delete our data create delete.php in:
+app/code/VDC/Grid/Controller/Adminhtml/Index/Delete.php
+For delete our one or more data create MassDelete.php in:
+app/code/VDC/Grid/Controller/Adminhtml/Index/MassDelete.php
+In edit for save & continue button create file in:
+app/code/VDC/Grid/Block/Adminhtml/Grid/Edit/SaveAndContinueButton.php
+And give class like VDC\Grid\Block\Adminhtml\Grid\Edit\SaveAndContinueButton in:
+app/code/VDC/Grid/view/adminhtml/ui_component/custom_grid_add_form.xml
+In edit for back button same like above:
+For InlineEdit create file in:
+app/code/VDC/Grid/Controller/Adminhtml/Index/InlineEdit.php
+In custom_grid_listing.xml do correctly in this two line:
+  <param name="selectProvider" xsi:type="string">custom_grid_listing.custom_grid_listing.custom_grid_columns.ids</param>
+<item name="provider" xsi:type="string">custom_grid_listing.custom_grid_listing.custom_grid_columns_editor</item>
+In edit items for delete:
+Create file in:
+app/code/VDC/Grid/Block/Adminhtml/Grid/Edit/DeleteButton.php
+Give class in:
+app/code/VDC/Grid/view/adminhtml/ui_component/custom_grid_add_form.xml
+In edit items for reset:
+Create file in:
+app/code/VDC/Grid/Block/Adminhtml/Grid/Edit/ResetButton.php
+Give class in:
+app/code/VDC/Grid/view/adminhtml/ui_component/custom_grid_add_form.xml
+In configuration add enable/disable field to enable and disable grid:
+Create file system.xml in:
+app/code/VDC/Grid/etc/system.xml
+In menu.xml give in main add tag:
+dependsOnConfig="section_grid/group_grid/enable"(section_id/group_id/Field_id)
+
+
+
+
+getItems() and getData(). What is the different?
+->getItems() retrieves a collection of objects (e.g., products, orders, customers) from a collection.
+getData() retrieves the data of a single object (e.g., product, order, customer) as an array, allowing you to access specific attributes or properties.
+
+difference between collection and collectionFactory:
+->Collection is an instance of a collection of database records (e.g., products, orders) with methods to interact with those records.
+->CollectionFactory is a factory class used to instantiate Collection objects, adhering to Magento's dependency injection principles. It helps in creating instances of Collection classes without directly instantiating them using new.
+
+
+
+
+VDC_Form Extension:(custom tab in customer account and form)
+19.Add new tab in customer account:
+Create file in:
+app/code/VDC/Grid/view/frontend/layout/customer_account.xml
+Create file in:
+app/code/VDC/Grid/view/frontend/layout/grid_customer_index.xml
+Now create routes.xml file at below path:
+app/code/VDC/Grid/etc/frontend/routes.xml
+Create index file for new page:
+app/code/VDC/Grid/Controller/Customer/Index.php
+Create phtml file for display frontend output at below path:
+app/code/VDC/Grid/view/frontend/templates/customtab.phtml
+
+
+
+20.Create form (name, employe_id, position, description):
+21.Display data in your custom tab (edit and delete action needed):
+Create table:
+app/code/VDC/Form/etc/db_schema.xml file
+Hence, the db_schema_whitelist.json holds a list of all the DB tables, columns, indexes, constraints, etc that where created via declarative schema and can therefore be safely altered in case it detects any change for those elements in an upgraded db_schema.xml file.
+php bin/magento setup:db-declaration:generate-whitelist --module-name=Vendorname_Modulename
+Check your etc folder of your module, db_schema_whitelist.json file must have generated.
+Now, run the below command to update this table in the database:
+php bin/magento setup:upgrade && php bin/magento setup:static-content:deploy -f
+Our database created.
+Create the Model file:
+app/code/VDC/Form/Model/form.php
+For save our data in table we can get id from here.
+Create the ResourceModel folder:
+app/code/VDC/Form/Model/ResourceModel/form.php:
+For save our data in table we can get id from here.
+Create Folder with any name :
+app/code/VDC/Form/Model/ResourceModel/Form
+Create collection file in that folder:
+app/code/VDC/Form/Model/ResourceModel/Grid/Collection.php
+Create di.xml file in etc folder:
+app/code/VDC/Form/etc/di.xml
+Create block folder in our extension:
+app/code/VDC/Form/Block
+Create file in that for get data from data in frontend else from admin data
+app/code/VDC/Form/Block/Index.php
+Create Controller file for frontend page:
+app/code/VDC/Form/Controller/Index.php
+Create xml file for call our block and phtml file:
+app/code/VDC/Form/view/frontend/layout/form_index_index.xml
+Create phtml file for out html code:
+app/code/VDC/Form/view/frontend/templates/form.phtml
+For insert data create block,Controller file:
+app/code/VDC/Form/Block/Insert.php
+app/code/VDC/Form/Controller/Insert.php
+Create xml file in:
+app/code/VDC/Form/view/frontend/layout/form_index_insert.xml
+Create phtml file in:
+app/code/VDC/Form/view/frontend/templates/insert.phtml
+For Edit data:
+app/code/VDC/Form/Controller/Edit.php
+app/code/VDC/Form/Block/Edit.php
+Create xml file in:
+app/code/VDC/Form/view/frontend/layout/form_index_edit.xml
+Create phtml file in:
+app/code/VDC/Form/view/frontend/templates/edit.phtml
+For Delete data:
+app/code/VDC/Form/Controller/Delete.php
+Create DataProvider file in model folder:
+app/code/VDC/Grid/Model/DataProvider.php
+Give path in and di.xml
+For display data in custom tab:
+Form_customer_index.xml give block of form.phtml
+Create form.phtml file for display form data:
+app/code/VDC/Form/view/frontend/templates/form.phtml
+
+
+22.Do clear cache programmatically:
+Create file in helper for clear cache:
+app/code/VDC/Form/Helper/CacheClear.php
+In controller file in your method call the function of CacheClear.php
+To  check cache clear or not in CacheClear.php file use log and echo any message in function.
+
+
+23.Do reindex programmatically:
+Create file in controller:
+app/code/VDC/Form/Controller/Index/Reindex.php
+Make any changes in admin side in category and product
+In admin system/Index management->select all indexer nd invalidate indexer->submit
+After that refresh page and see your changes and check index time in Index management->updated. 
+ELSE,In save.php submit button place code of reindex then when we click submit button then reindex successfully.(also verify with log)
+
+
+
+24.Change shipping price to $99 if get state US:
+Create new extension for custom shipping:
+app/code/VDC/CustomShipping/registration.php
+app/code/VDC/CustomShipping/etc/module.xml
+app/code/VDC/CustomShipping/etc/adminhtml/routes.xml
+app/code/VDC/CustomShipping/etc/adminhtml/menu.xml
+Create system.config fot set custom shipping rate for specific country:
+app/code/VDC/CustomShipping/etc/adminhtml/system.xml
+Create file for logic of custom shipping:
+app/code/VDC/CustomShipping/Model/Carrier/CustomShipping.php
+For type:
+app/code/VDC/CustomShipping/Model/Config/Source/ShippingType.php
+Give path in system.xml and create field for type
+All logic for per product in cart change shipping price in:
+app/code/VDC/CustomShipping/Model/Carrier/CustomShipping.php
+
+
+VDC_CustomShipping Extension:(shipping method for us and order status):	
+24.Change shipping price to $99 if get state US:
+Create new extension for custom shipping:
+app/code/VDC/CustomShipping/registration.php
+app/code/VDC/CustomShipping/etc/module.xml
+app/code/VDC/CustomShipping/etc/adminhtml/routes.xml
+app/code/VDC/CustomShipping/etc/adminhtml/menu.xml
+Create system.config for set custom shipping rate for specific country:
+app/code/VDC/CustomShipping/etc/adminhtml/system.xml
+Create file for logic of custom shipping:
+app/code/VDC/CustomShipping/Model/Carrier/CustomShipping.php
+For type:
+app/code/VDC/CustomShipping/Model/Config/Source/ShippingType.php
+Give path in system.xml and create field for type
+All logic for per product in cart change shipping price in:
+app/code/VDC/CustomShipping/Model/Carrier/CustomShipping.php
+
+
+25.Order status: Custom Status
+Display the new order status column in the grid:
+By admin panel:
+stores->order status->create new status:
+Add status and label and save.
+stores->order status->Assign status to state:
+Fill the required details.
+By programmatically:
+Create file in:
+app/code/VDC/CustomShipping/Setup/Patch/Data/OrderStatus.php
+
+
+VDC_CustomSectionOrder Extension:(text field in order view page display in grid and send in shipment email):	
+26.Create one order note on the order view admin side. It would be added to the shipment email:
+Create new extension:
+app/code/VDC/CustomSectionOrder/registration.php
+app/code/VDC/CustomSectionOrder/etc/module.xml
+app/code/VDC/CustomSectionOrder/etc/adminhtml/routes.xml
+app/code/VDC/CustomSectionOrder/etc/adminhtml/menu.xml
+ Create files for custom tab in order view:
+Create a Layout:
+app/code/VDC/CustomSectionOrder/view/adminhtml/layout/sales_order_view.xml
+ Create a Block:
+app/code/VDC/CustomSectionOrder/Admin/Order/View/Tab/CustomTab.php 
+Create a Template:	
+app/code/VDC/CustomSectionOrder/view/adminhtml/templates/order/view/tab/customtab.html
+ Create files for custom message in order view:
+Create a Layout:
+app/code/VDC/CustomSectionOrder/view/adminhtml/layout/sales_order_view.xml
+Create a Block:
+app/code/VDC/CustomSectionOrder/Admin/Order/View/Tab/CustomMessage.php 
+Create a Template:	
+app/code/VDC/CustomSectionOrder/view/adminhtml/templates/order/view/tab/CustomMessage.phtml
+Create Text field in order view page:	
+Create a Layout:
+app/code/VDC/CustomSectionOrder/view/adminhtml/layout/sales_order_view.xml
+Create a Block:
+app/code/VDC/CustomSectionOrder/Block/Adminhtml/Order/Create/Data.php 
+Create a Template:	
+app/code/VDC/CustomSectionOrder/view/adminhtml/templates/order/create/data.phtml
+Create column in table and display in grid:
+Create db_schema.xml for column:
+app/code/VDC/CustomSectionOrder/etc/db_schema.xml
+Upgradeschema.php,ordersaveafter,mycolumn.php file in not indeed.
+Create file for display column in grid:
+app/code/VDC/CustomSectionOrder/view/adminhtml/ui_component/sales_order_grid.xml
+For save custom field data in table:
+Create file for save value:
+app/code/VDC/CustomSectionOrder/Controller/Adminhtml/Index/Save.php 
+For send email:
+Create app/code/VDC/CustomSectionOrder/etc/email_templates.xml:
+In which:
+Template id: Your template id you have created in Step 1.
+Label: Your Label will show in the dropdown email.
+file: Your email template file.
+type: Type of your email. module: Your module.
+area: Place your email in the module directory. view / frontend or view / adminhtml
+Create app/code/VDC/CustomSectionOrder/Helper/Email.php:
+In which:
+$sender: The sender’s information (‘name’: sender’s name and ‘email’: sender’s email)
+setTemplateIdentifier(shipment_template): shipment_template is ID of template email mentioned in Step 1 and 2.
+setTemplateVars: The information or variable in your email.
+addTo(‘testmagento321@gmail.com’): You can fill in the recipient’s email here.
+Create Email by HTML:
+Create app/code/VDC/CustomSectionOrder/view/frontend/email/shipment_template.html.
+Catch Event:
+To test the email function, we test through the capture of the sales_order_shipmnet_save_after event when the customer registers the account successfully.
+Create app/code/VDC/HelloWorld/etc/frontend/events.xml
+Create Observer to Send Email:
+Create app/code/VDC/CustomSectionOrder/Observer/ShipmentSaveAfter.php.
+Get all order data by order id and then display custom value in text field and send it to in email.
+
+
+
+
+VDC_Preference Extension:
+27.Create preference and override product name for the particular SKU:	
+Create new extension:
+Create di.xml file:
+app/code/VDC/Preference/etc/di.xml
+Create model file to change product name as per SKU:
+app/code/VDC/Preference/Model/Product.php
+
+
+28.Add product qty 5 for the particular SKU using by Before plugin:
+Create di.xml file:
+app/code/VDC/Preference/etc/di.xml
+Create Plugin file to change product qty when add any qty add 5 qty as per SKU:
+app/code/VDC/Preference/Model/Productcart.php
+
+
+29.Change product name to VDCStore for the particular SKU using by After plugin:
+Create di.xml file:
+app/code/VDC/Preference/etc/di.xml
+Create Plugin file to change product name as per SKU:
+app/code/VDC/Preference/Plugin/Productname.php
+
+
+30.Install and configure theme:
+Install porto theme and place in:
+app/code/..
+app/design/frontend/..
+pub/media/..
+Configure in:
+Content/configuration->change our theme name->save
+
+
+31.Create child theme and assign it to website:
+Create a child theme folder named as {parent-theme-name}_child in the following folder path:
+magento247/app/design/frontend/Smartwave/porto_child
+Create file theme.xml inside the child theme to specify the parent theme inherited by the child theme:
+magento247/app/design/frontend/Smartwave/porto_child/theme.xml
+Create a registration.php file for registering your child theme.
+magento247/app/design/frontend/Smartwave/porto_child/registration.php
+Create composer.json:
+magento247/app/design/frontend/Smartwave/porto_child/composer.json
+Create web directory inside the child theme with:
+magento247/app/design/frontend/Smartwave/porto_child/web/images
+Create media folder inside the child theme:
+magento247/app/design/frontend/Smartwave/porto_child/media
+
+
+VDC_DynamicRoute Extension:(system config saved value display in url and then call controller)
+32.magento 2 creates a dynamic route:
+Create new extension:
+Create system.xml config:
+app/code/VDC/DynamicRoute/etc/adminhtml/system.xml
+app/code/VDC/DynamicRoute/etc/config.xml
+In addition, add a routes.xml file defining the default route:
+app/code/VDC/DynamicRoute/etc/frontend/routes.xml
+Now define the ACL configuration for the section added within the system.xml file:
+app/code/VDC/DynamicRoute/etc/acl.xml
+Create controller file:
+app/code/VDC/DynamicRoute/Controller/Index/Index.php
+Next will be to add the Router class. First of all, the Router should be defined within the module’s di.xml file within the routerList argument:
+app/code//VDC/DynamicRoute/etc/frontend/di.xml
+Add the Router class, that should implement the interface, and subsequently contain a match() method.
+In summary, the module path of the route is checked again the route added in Stores -> Configuration in the admin, and if it matches, set the module, controller and action names of the request to dynamicroute, index and index respectively. This will allow the controller class defined above to handle the route:
+app/code/VDC/DynamicRoute/Controller/Router.php
+If you haven’t noticed from the above code, a Helper class is defined. This simply contains a method that will return the custom route defined in the Stores -> Configuration area:
+app/code/VDC/DynamicRoute/Helper/Data.php
+Create view file:
+app/code/VDC/DynamicRoute/view/frontend/layout/dynamicroute_index_index.xml
+app/code/VDC/DynamicRoute/view/frontend/templates/index.phtml
+
+
+33.magento 2 how to add css and js in extension(HelloWorld):
+Create file in:
+app/code/VDC/HelloWorld/view/frontend/web/css/mycss.css
+app/code/VDC/HelloWorld/view/frontend/web/js/myjs.css
+Call css and js file in your layout file:
+app/code/VDC/HelloWorld/view/frontend/layout/helloworld_index_data.xml
+
+
+For get configurable selected product id:
+<script type="text/javascript">
+                requirejs(['jquery','underscore'], function(jQuery,_){
+                jQuery( ".product-options-wrapper div" ).on("click", function() {
+                selpro();
+                });
+                function selpro () {
+                    var selected_options = {};
+                    jQuery('div.swatch-attribute').each(function(k,v){
+                        var attribute_id    = jQuery(v).attr('data-attribute-id');
+                        var option_selected = jQuery(v).attr('data-option-selected');
+                        if(!attribute_id || !option_selected){ return;}
+                        selected_options[attribute_id] = option_selected.toString();
+                    });
+                    var product_id_index = jQuery('[data-role=swatch-options]').data('mage-SwatchRenderer').options.jsonConfig.index;
+                    var selectedSimpleProductId = '';
+                    jQuery.each(product_id_index, function(product_id,attributes){
+                        var productIsSelected = function(attributes, selected_options){
+                            return _.isEqual(attributes, selected_options);
+                        }
+                        if(productIsSelected(attributes, selected_options)){
+                            selectedSimpleProductId = product_id;
+                        } 
+                    });
+                
+                 window.alert(selectedSimpleProductId);
+                }
+            }); 
+</script>
+
+hyva theme:
+Copy tailwind folder from : app/design/frontend/Hyva/HyvaChildTheme/web/
+Paste in your child theme : app/design/frontend/Hyva/NewChild/web/
+
+Go to tailwind folder and remove node_modules folder is exists. then run below commands in app/design/frontend/Hyva/NewChild/web/tailwind folder.
+
+npm install
+npm run build-prod
+Run below command to run npm while working on theme.
+
+npm run watch
+
+
+
+
