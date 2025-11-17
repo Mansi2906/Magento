@@ -28,13 +28,39 @@ unzip tailwind.zip
 ==========================================================
 
 hyva theme installation:
-composer config --auth http-basic.hyva-themes.repo.packagist.com token 905bee986fc2da4257e3d969e1edcc7d
+create account in hyva: https://www.hyva.io/licenses/manage/shops/
+uname : mansi@vdcstore.com
+password : mansi@vdcstore.com1
 
-composer config repositories.private-packagist composer https://hyva-themes.repo.packagist.com/m247_theme/
+# This is the Private Packagist key for your license currently linked to mansi.com:
+# You may install it as follows:
+composer config repositories.private-packagist composer https://hyva-themes.repo.packagist.com/mansi-com-z4tri2okk9/
+
+composer config --global --auth http-basic.hyva-themes.repo.packagist.com token 58b6c1831597a2b69598d49a86337417388c420548c3f2dcf9a2b5b08a53
+
+composer require hyva-themes/magento2-default-theme
+
+bin/magento setup:upgrade
+
+Navigate to the Content > Design > Configuration admin section and activate the hyva/default theme.
 
 grep -r "VAT" app/code
 
+Hyva child theme:https://meetanshi.com/blog/how-to-create-a-hyva-child-theme-in-magento-2/
+Child themes in app/design/
+Copy the web directory with all files from the parent theme vendor/hyva-themes/magento2-default-theme/web/ to your own child theme app/design/frontend/Acme/default/web/.
 
+hyva theme:
+Copy tailwind folder from : app/design/frontend/Hyva/HyvaChildTheme/web/
+Paste in your child theme : app/design/frontend/Hyva/NewChild/web/
+
+Go to tailwind folder and remove node_modules folder is exists. then run below commands in app/design/frontend/Hyva/NewChild/web/tailwind folder.
+
+npm install
+npm run build-prod
+Run below command to run npm while working on theme.
+
+npm run watch
 ================== Upload / update extension on github:==================
 cd /home/vdc/projects/VIha/vdc_modules
 git status
@@ -122,7 +148,7 @@ else
 composer create-project --repository-url=https://repo.magento.com/ magento/project-community-edition magento8 2.4.8
 
 go in folder : m247
-php bin/magento setup:install --base-url=http://192.168.2.53/php82/m247/pub/ --db-host=localhost --db-name=m247 --db-user=root --db-password=root --admin-firstname=admin --admin-lastname=develpoer --admin-email=admin@vdcstore.com --admin-user=admin --admin-password=admin@123 --language=en_US --currency=USD --timezone=America/Chicago --use-rewrites=1
+php bin/magento setup:install --base-url=http://192.168.5.109/php83/magento8/pub/ --db-host=localhost --db-name=magento8 --db-user=root --db-password=root --admin-firstname=admin --admin-lastname=develpoer --admin-email=@vdcstore.com --admin-user=admin --admin-password=admin@123 --language=en_US --currency=USD --timezone=America/Chicago --use-rewrites=1
 
 php bin/magento mo:dis Magento_TwoFactorAuth Magento_AdminAdobeImsTwoFactorAuth
 
