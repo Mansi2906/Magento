@@ -44,23 +44,26 @@ bin/magento setup:upgrade
 
 Navigate to the Content > Design > Configuration admin section and activate the hyva/default theme.
 
-grep -r "VAT" app/code
+Hyva child theme:
+https://meetanshi.com/blog/how-to-create-a-hyva-child-theme-in-magento-2/
 
-Hyva child theme:https://meetanshi.com/blog/how-to-create-a-hyva-child-theme-in-magento-2/
 Child themes in app/design/
-Copy the web directory with all files from the parent theme vendor/hyva-themes/magento2-default-theme/web/ to your own child theme app/design/frontend/Acme/default/web/.
+
+Copy the web directory with all files from the parent theme vendor/hyva-themes/magento2-default-theme/web/ to your own child theme app/design/frontend/Hyva/HyvaChild/web/.
+
+Run below commands in app/design/frontend/Hyva/NewChild/web/tailwind folder.
+
+npm install
+npm run build-prod
+
+Run below command to run npm while working on theme.
+
+npm run watch
 
 hyva theme:
 Copy tailwind folder from : app/design/frontend/Hyva/HyvaChildTheme/web/
 Paste in your child theme : app/design/frontend/Hyva/NewChild/web/
 
-Go to tailwind folder and remove node_modules folder is exists. then run below commands in app/design/frontend/Hyva/NewChild/web/tailwind folder.
-
-npm install
-npm run build-prod
-Run below command to run npm while working on theme.
-
-npm run watch
 ================== Upload / update extension on github:==================
 cd /home/vdc/projects/VIha/vdc_modules
 git status
